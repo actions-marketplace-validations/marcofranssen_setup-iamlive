@@ -11,18 +11,18 @@ concurrency:
 jobs:
   release:
     name: Release
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     permissions:
       contents: write
 
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7.0.0
 
       - name: Setup Node
-        uses: actions/setup-node@v6.2.0
+        uses: actions/setup-node@v6.4.0
         with:
-          node-version: '20'
+          node-version: "24"
 
       - name: Setup pnpm
         run: npm install -g pnpm
@@ -38,7 +38,7 @@ jobs:
             exit 1
           }
 
-      - uses: ncipollo/release-action@v1.20.0
+      - uses: ncipollo/release-action@v1.21.0
         id: release
         with:
           draft: ${{ contains(github.ref, '-draft') }}
